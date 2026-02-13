@@ -139,6 +139,13 @@ jobs:
           ref: ${{ matrix.board.nimble_ver }}
           path: CustomNimBLE-Arduino
 
+      - name: Patch NimBLE esp_bt.h include for ESP32-S2 (no BT)
+        run: |
+          NIMBLE_DEVICE=$GITHUB_WORKSPACE/CustomNimBLE-Arduino/src/NimBLEDevice.h
+          if [[ -f "$NIMBLE_DEVICE" ]]; then
+            sed -i 's/# ifndef CONFIG_IDF_TARGET_ESP32P4/# if !defined(CONFIG_IDF_TARGET_ESP32P4) \&\& !defined(CONFIG_IDF_TARGET_ESP32S2)/g' "$NIMBLE_DEVICE"
+          fi
+
       - name: Install Adafruit_NeoPixel
         uses: actions/checkout@v2
         with:
