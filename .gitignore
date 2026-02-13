@@ -1,0 +1,11 @@
+# Build output & cloned libs (Actions klonar dessa)
+.pio/
+CustomLibraries/
+esp32_marauder/build/
+
+# IDE & editor (ska inte synas i repo)
+.cursor/
+.vscode/
+.vscode/c_cpp_properties.json
+.vscode/settings.json
+esp32_marauder/.vscode/settings.json
